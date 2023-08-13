@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}Add Task{% endblock%} 
+{% block content %} {% load tailwind_filters %}
+
+<div class ="mt-4">
+  <div
+    class="container mx-auto px-4 w-3/5 border-double border-8 border-x-cyan-600 border-y-cyan-300 rounded-lg"
+  >
+    <form method="post" class="p-4">
+        {% csrf_token %} 
+        {{ form|crispy }}
+        <button class="px-4 py-1 text-sm text-cyan-600 font-semibold rounded-md border border-cyan-400 hover:text-white hover:bg-cyan-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-offset-2" type = "submit">Message</button>
+    </form>
+  </div>
+</div>
+
+{% endblock%}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Show Task{% endblock%}
+{% block content %}
+<div class="mt-2">
+    <div class="relative container overflow-x-auto mx-auto p-4 w-4/5 border-double border-8 border-x-cyan-600 border-y-cyan-300 rounded-lg shadow-md sm:rounded-lg">
+      {% if data %}
+        <table class="w-full text-sm text-center text-blue-100 dark:text-blue-100 rounded-lg">
+          <thead class="text-xs text-white uppercase bg-cyan-600 dark:text-white">
+            <tr>
+              <th scope="col" class="px-4 py-3 w-[90px]">Task Id</th>
+              <th scope="col" class="px-4 py-3">Task Title</th>
+              <th scope="col" class="px-4 py-3">Task Description</th>
+              <th scope="col" class="px-4 py-3 w-[150px]">Task Status</th>
+              <th scope="col" class="px-4 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for single_data in data %}
+                {% if single_data.is_completed %}
+                <tr class="bg-cyan-500 border-b border-cyan-900">
+                  <td class="px-4 py-3 w-[50px]">{{single_data.taskId}}</td>
+                  <th
+                    scope="row"
+                    class="px-4 py-3 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
+                  >
+                    {{single_data.taskTitle}}
+                  </th>
+                  <td class="px-4 py-3">{{single_data.taskDescription}}</td>
+                  <td class="px-4 py-3">
+                      Complete
+                  </td>
+                  <td class="px-4 py-3">
+                    <a href="{% url 'delete_complete' single_data.taskId %}" class="font-medium text-white border-2 border-red-700 p-2 rounded-lg bg-red-800 inline-block w-[95px]">Delete</a>
+                  </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+          <div class = "h-screen bg-[url('../../static/logo/not.png')] bg-gray-200 bg-no-repeat bg-cover">
+          </div>
+        {% endif %}
+      </div>    
+</div>
+{% endblock%}
